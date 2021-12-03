@@ -1,7 +1,9 @@
 package com.yjl.pojo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * @created: 2021/12/02
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CourseSection implements Serializable {
     //课程章节id
     @JSONField(ordinal = 1)

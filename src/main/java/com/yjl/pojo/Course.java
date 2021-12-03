@@ -1,7 +1,9 @@
 package com.yjl.pojo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -13,10 +15,15 @@ import java.io.Serializable;
  * 课程表
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course implements Serializable {
     /**
      * 使用 JSONField 设置ordinal的值,来对转换成的JSON数据进行排序
      * 课程ID
+     *ordinal的值执行顺序
+     * serialize指定字段是否序列化
+     *
      */
     @JSONField(ordinal = 1)
     private int id;
@@ -97,15 +104,15 @@ public class Course implements Serializable {
     private String share_image_title;
 
     //使用JSONField(serialize = false)排除不需要转换的字段
-
+    //课时数
     @JSONField(serialize = false)
-    private int total_course_time; //课时数
-
+    private int total_course_time;
+    //显示销量
     @JSONField(serialize = false)
-    private int sales; //显示销量
-
+    private int sales;
+    //真实销量
     @JSONField(serialize = false)
-    private int actual_sales; //真实销量
+    private int actual_sales;
 
     @JSONField(serialize = false)
     private int is_new; //是否新品
