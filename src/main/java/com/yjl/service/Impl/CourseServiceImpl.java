@@ -2,7 +2,7 @@ package com.yjl.service.Impl;
 
 import com.yjl.mapper.CourseMapper;
 import com.yjl.mapper.Impl.CourseMapperImpl;
-import com.yjl.pojo.Course;
+import com.yjl.entity.CourseDO;
 import com.yjl.service.CourseService;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class CourseServiceImpl implements CourseService {
      * @return
      */
     @Override
-    public List<Course> listCourse() {
-        List<Course> courseList = courseMapper.listCourse();
-        return courseList;
+    public List<CourseDO> listCourse() {
+        List<CourseDO> courseDOList = courseMapper.listCourse();
+        return courseDOList;
     }
 }

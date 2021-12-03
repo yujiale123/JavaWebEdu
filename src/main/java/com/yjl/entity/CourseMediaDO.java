@@ -1,4 +1,4 @@
-package com.yjl.pojo;
+package com.yjl.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseMedia implements Serializable {
+public class CourseMediaDO implements Serializable {
     //课程媒体主键ID
     @JSONField(ordinal = 1)
     private int id;

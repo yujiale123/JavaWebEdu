@@ -1,4 +1,4 @@
-package com.yjl.pojo;
+package com.yjl.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course implements Serializable {
+public class CourseDO implements Serializable {
     /**
      * 使用 JSONField 设置ordinal的值,来对转换成的JSON数据进行排序
      * 课程ID

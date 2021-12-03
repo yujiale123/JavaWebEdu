@@ -1,6 +1,6 @@
 package com.yjl.service;
 
-import com.yjl.pojo.Course;
+import com.yjl.entity.CourseDO;
 
 import java.util.List;
 
@@ -10,6 +10,10 @@ import java.util.List;
  * @created: 2021/12/03
  */
 public interface CourseService {
-
-    public List<Course> listCourse();
+    /**
+     * 查询课程列表
+     *
+     * @return
+     */
+    public List<CourseDO> listCourse();
 }

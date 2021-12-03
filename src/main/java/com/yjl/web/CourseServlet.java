@@ -2,7 +2,7 @@ package com.yjl.web;
 
 import com.alibaba.fastjson.JSON;
 import com.yjl.base.BaseServlet;
-import com.yjl.pojo.Course;
+import com.yjl.entity.CourseDO;
 import com.yjl.service.CourseService;
 import com.yjl.service.Impl.CourseServiceImpl;
 
@@ -24,12 +24,18 @@ public class CourseServlet extends BaseServlet {
     CourseService courseService = new CourseServiceImpl();
 
 
+    /**
+     * 查询课程信息
+     *
+     * @param request
+     * @param response
+     */
     public void listCourse(HttpServletRequest request, HttpServletResponse response) {
         //1、接受参数
 
         //2、业务处理
-        List<Course> courseList = courseService.listCourse();
-        String result = JSON.toJSONString(courseList);
+        List<CourseDO> courseDOList = courseService.listCourse();
+        String result = JSON.toJSONString(courseDOList);
         try {
             response.getWriter().println(result);
         } catch (IOException e) {

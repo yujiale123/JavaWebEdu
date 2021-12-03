@@ -1,6 +1,7 @@
-package com.yjl.pojo;
+package com.yjl.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseLesson implements Serializable {
+public class CourseLessonDO implements Serializable {
     /**
      * 课时id
      */
