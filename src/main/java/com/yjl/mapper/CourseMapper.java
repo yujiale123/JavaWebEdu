@@ -15,5 +15,5 @@ public interface CourseMapper {
      *
      * @return
      */
-    List<CourseDO> listCourse() ;
+    List<CourseDO> listCourse(String name,String status) ;
 }

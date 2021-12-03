@@ -21,8 +21,8 @@ public class CourseServiceImpl implements CourseService {
      * @return
      */
     @Override
-    public List<CourseDO> listCourse() {
-        List<CourseDO> courseDOList = courseMapper.listCourse();
+    public List<CourseDO> listCourse(String name,String status) {
+        List<CourseDO> courseDOList = courseMapper.listCourse(name,status);
         return courseDOList;
     }
 }

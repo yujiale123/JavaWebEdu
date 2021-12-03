@@ -15,5 +15,5 @@ public interface CourseService {
      *
      * @return
      */
-    public List<CourseDO> listCourse();
+    public List<CourseDO> listCourse(String name,String status);
 }
