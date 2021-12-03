@@ -21,13 +21,18 @@ public class CourseMapperImpl implements CourseMapper {
      * @return
      */
     @Override
-    public List<CourseDO> listCourse() throws SQLException {
+    public List<CourseDO> listCourse() {
         //1、创建QueryRunner方法
         QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
         //2、编写sql
-        String sql = "select * from course where is_del = ? ";
+        String sql = "select * from course where is_del = ?";
         //3、执行sql
-        List<CourseDO> courseDOList = queryRunner.query(sql, new BeanListHandler<CourseDO>(CourseDO.class), 0);
+        List<CourseDO> courseDOList = null;
+        try {
+            courseDOList = queryRunner.query(sql, new BeanListHandler<CourseDO>(CourseDO.class), 0);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return courseDOList;
     }
 }

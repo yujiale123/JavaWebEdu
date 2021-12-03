@@ -1,7 +1,6 @@
 package com.yjl.filter;
 
-import com.mysql.jdbc.AbandonedConnectionCleanupThread;
-
+import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -45,7 +44,7 @@ public class MyContextListener implements ServletContextListener {
         }
         try {
             AbandonedConnectionCleanupThread.shutdown();
-            com.mysql.jdbc.AbandonedConnectionCleanupThread.sleep(2000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

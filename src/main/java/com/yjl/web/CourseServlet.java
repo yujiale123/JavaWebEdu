@@ -1,6 +1,7 @@
 package com.yjl.web;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.yjl.base.BaseServlet;
 import com.yjl.entity.CourseDO;
 import com.yjl.service.CourseService;
@@ -35,7 +36,9 @@ public class CourseServlet extends BaseServlet {
 
         //2、业务处理
         List<CourseDO> courseDOList = courseService.listCourse();
-        String result = JSON.toJSONString(courseDOList);
+        //使用SimplePropertyPreFilter指定转换的json字段
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter(CourseDO.class, "id", "course_name", "price", "sort_num", "status");
+        String result = JSON.toJSONString(courseDOList,filter);
         try {
             response.getWriter().println(result);
         } catch (IOException e) {

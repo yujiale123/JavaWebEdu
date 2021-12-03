@@ -2,7 +2,6 @@ package com.yjl.mapper;
 
 import com.yjl.entity.CourseDO;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,5 +15,5 @@ public interface CourseMapper {
      *
      * @return
      */
-    List<CourseDO> listCourse() throws SQLException;
+    List<CourseDO> listCourse() ;
 }
