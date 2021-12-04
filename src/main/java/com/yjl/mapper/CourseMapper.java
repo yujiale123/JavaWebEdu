@@ -15,5 +15,14 @@ public interface CourseMapper {
      *
      * @return
      */
-    List<CourseDO> listCourse(String name,String status) ;
+    List<CourseDO> listCourse(String courseName,String status) ;
+
+    /**
+     * 保存课程信息
+     * @param course
+     * @return
+     */
+    Integer saveCourse(CourseDO course);
+
+    CourseDO getCourseById(Integer id);
 }

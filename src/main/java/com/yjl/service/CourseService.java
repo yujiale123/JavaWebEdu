@@ -15,5 +15,9 @@ public interface CourseService {
      *
      * @return
      */
-    public List<CourseDO> listCourse(String name,String status);
+    public List<CourseDO> listCourse(String courseName,String status);
+
+    String saveCourse(CourseDO course);
+
+    CourseDO getCourseById(Integer id);
 }
