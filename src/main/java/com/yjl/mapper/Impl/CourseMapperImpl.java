@@ -27,7 +27,7 @@ public class CourseMapperImpl implements CourseMapper {
         //1、创建QueryRunner方法
         QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
         //2、编写sql
-        StringBuffer stringBuffer = new StringBuffer("select * from course where 1=1 and is_del = ?");
+        StringBuffer stringBuffer = new StringBuffer("SELECT id,course_name,price,sort_num,STATUS FROM course WHERE 1=1 and is_del = ? ");
         //创建List集合保存参数
         ArrayList<Object> list = new ArrayList<>(2);
         list.add(0);
@@ -110,7 +110,24 @@ public class CourseMapperImpl implements CourseMapper {
     public CourseDO getCourseById(Integer id) {
         CourseDO courseDO = new CourseDO();
         QueryRunner qr = new QueryRunner(DruidUtils.getDataSource());
-        String sql = "select * from course where id =?";
+        String sql = "SELECT \n" +
+                "id,\n" +
+                "course_name,\n" +
+                "brief,\n" +
+                "teacher_name,\n" +
+                "teacher_info,\n" +
+                "preview_first_field,\n" +
+                "preview_second_field,\n" +
+                "discounts,\n" +
+                "price,\n" +
+                "price_tag,\n" +
+                "course_img_url,\n" +
+                "share_image_title,\n" +
+                "share_title,\n" +
+                "share_description,\n" +
+                "course_description,\n" +
+                "STATUS\n" +
+                "FROM course WHERE id = ?";
         try {
             courseDO =  qr.query(sql, new BeanHandler<CourseDO>(CourseDO.class), id);
         } catch (SQLException throwables) {
