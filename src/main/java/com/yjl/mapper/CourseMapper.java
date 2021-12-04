@@ -25,4 +25,6 @@ public interface CourseMapper {
     Integer saveCourse(CourseDO course);
 
     CourseDO getCourseById(Integer id);
+
+    Integer updateStatusById(CourseDO course);
 }

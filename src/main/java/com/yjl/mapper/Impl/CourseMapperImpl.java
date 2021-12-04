@@ -93,6 +93,7 @@ public class CourseMapperImpl implements CourseMapper {
         //4.执行插入操作
         int row = 0;
         try {
+
             row = qr.update(sql, param);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -103,6 +104,7 @@ public class CourseMapperImpl implements CourseMapper {
 
     /**
      * 根据id查询课程信息
+     *
      * @param id
      * @return
      */
@@ -129,11 +131,33 @@ public class CourseMapperImpl implements CourseMapper {
                 "STATUS\n" +
                 "FROM course WHERE id = ?";
         try {
-            courseDO =  qr.query(sql, new BeanHandler<CourseDO>(CourseDO.class), id);
+            courseDO = qr.query(sql, new BeanHandler<CourseDO>(CourseDO.class), id);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             courseDO = null;
         }
         return courseDO;
     }
+
+    /**
+     * 修改课程状态
+     *
+     * @param course
+     * @return
+     */
+    @Override
+    public Integer updateStatusById(CourseDO course) {
+        QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+        String sql = "UPDATE course SET STATUS = ? ,update_time = ? WHERE id = ?";
+        Object[] param = {course.getStatus(), course.getUpdate_time(), course.getId()};
+        Integer row = 0;
+        try {
+            row = queryRunner.update(sql, param);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return row;
+    }
+
+
 }

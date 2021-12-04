@@ -6,12 +6,14 @@ import com.yjl.base.BaseServlet;
 import com.yjl.entity.CourseDO;
 import com.yjl.service.CourseService;
 import com.yjl.service.Impl.CourseServiceImpl;
+import com.yjl.utils.DateUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: JavaWeb-Edu
@@ -85,5 +87,41 @@ public class CourseServlet extends BaseServlet {
                 "share_description", "course_description", "share_image_title");
         String result = JSON.toJSONString(course, filter);
         response.getWriter().print(result);
+    }
+
+
+    /**
+     * 根据课程id修改课程状态
+     *
+     * @param request
+     * @param response
+     */
+    public void updateCourseStatus(HttpServletRequest request, HttpServletResponse response) {
+        //1.获取参数
+        String id = request.getParameter("id");
+
+        CourseDO course = courseService.getCourseById(Integer.parseInt(id));
+        //4.判断课程信息状态,进行取反设置
+        int status = course.getStatus();
+        if (status == 0) {
+            //如果是0 设置为1
+            course.setStatus(1);
+        } else {
+            course.setStatus(0);
+        }
+        //5.设置更新时间
+        course.setUpdate_time(DateUtils.getDateFormat());
+
+        //6.修改状态
+        Map<String, Integer> map = courseService.updateStatusById(course);
+
+        //7.响应结果
+        String result = JSON.toJSONString(map);
+
+        try {
+            response.getWriter().print(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

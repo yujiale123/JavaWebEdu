@@ -7,7 +7,9 @@ import com.yjl.mapper.Impl.CourseMapperImpl;
 import com.yjl.service.CourseService;
 import com.yjl.utils.DateUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: JavaWeb-Edu
@@ -47,5 +49,22 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CourseDO getCourseById(Integer id) {
         return courseMapper.getCourseById(id);
+    }
+
+    @Override
+    public Map<String, Integer> updateStatusById(CourseDO course) {
+
+        Integer row = courseMapper.updateStatusById(course);
+        Map<String, Integer> map = new HashMap<>(1);
+
+        if (row > 0) {
+            if (course.getStatus() == 0) {
+                map.put("status", 0);
+            } else {
+                map.put("status", 1);
+            }
+        }
+
+        return map;
     }
 }

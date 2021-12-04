@@ -3,6 +3,7 @@ package com.yjl.service;
 import com.yjl.entity.CourseDO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: JavaWeb-Edu
@@ -20,4 +21,6 @@ public interface CourseService {
     String saveCourse(CourseDO course);
 
     CourseDO getCourseById(Integer id);
+
+    Map<String, Integer> updateStatusById(CourseDO course);
 }
