@@ -46,8 +46,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDO getCourseById(Integer id) {
-
-
         return courseMapper.getCourseById(id);
     }
 }
