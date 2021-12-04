@@ -46,8 +46,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDO getCourseById(Integer id) {
-        courseMapper.getCourseById(id);
 
-        return null;
+
+        return courseMapper.getCourseById(id);
     }
 }

@@ -1,9 +1,10 @@
 package com.yjl.mapper.Impl;
 
-import com.yjl.mapper.CourseMapper;
 import com.yjl.entity.CourseDO;
+import com.yjl.mapper.CourseMapper;
 import com.yjl.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -102,6 +103,32 @@ public class CourseMapperImpl implements CourseMapper {
 
     @Override
     public CourseDO getCourseById(Integer id) {
-        return null;
+        CourseDO courseDO = new CourseDO();
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "SELECT \n" +
+                "id,\n" +
+                "course_name,\n" +
+                "brief,\n" +
+                "teacher_name,\n" +
+                "teacher_info,\n" +
+                "preview_first_field,\n" +
+                "preview_second_field,\n" +
+                "discounts,\n" +
+                "price,\n" +
+                "price_tag,\n" +
+                "course_img_url,\n" +
+                "share_image_title,\n" +
+                "share_title,\n" +
+                "share_description,\n" +
+                "course_description,\n" +
+                "STATUS\n" +
+                "FROM course WHERE id = ?;";
+        try {
+            courseDO = queryRunner.query(sql, new BeanHandler<CourseDO>(CourseDO.class), id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            courseDO = null;
+        }
+        return courseDO;
     }
 }

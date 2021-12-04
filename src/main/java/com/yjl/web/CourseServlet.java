@@ -57,9 +57,10 @@ public class CourseServlet extends BaseServlet {
      */
     public void saveCourse(HttpServletRequest request, HttpServletResponse response) {
 
-        Integer integer = courseService.saveCourse(course);
+        CourseDO course = new CourseDO();
+        String saveCourse = courseService.saveCourse(course);
 
-        String result = JSON.toJSONString(integer);
+        String result = JSON.toJSONString(saveCourse);
         try {
             response.getWriter().println(result);
         } catch (IOException e) {
@@ -70,12 +71,19 @@ public class CourseServlet extends BaseServlet {
 
     /**
      * 根据id查询单个课程信息
+     *
      * @param request
      * @param response
      */
-    public void getCourseById(HttpServletRequest request, HttpServletResponse response){
+    public void getCourseById(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("id");
-        courseService.getCourseById(Integer.parseInt(id));
-    }
+        CourseDO course = courseService.getCourseById(Integer.parseInt(id));
 
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter(CourseDO.class, "id",
+                "course_name", "brief", "teacher_name", "teacher_info", "price", "price_tag",
+                "discounts", "preview_first_field", "preview_second_field", "course_img_url", "share_title",
+                "share_description", "course_description", "share_image_title");
+        String result = JSON.toJSONString(course, filter);
+        response.getWriter().print(result);
+    }
 }
